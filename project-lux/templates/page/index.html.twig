@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="service" id="service">
+
+        <h2 class="title">Servicios</h2>
+        <p> En nuesto club disfrutaras de los mejores servicios en todo momento. Ya que contamos con los mejores profesionales.</p>
+        
+        <div class="box-container">
+
+            <div class="box">
+                <i class="fab fa-itunes-note"></i>
+                <h3>DJs</h3>
+                <p>Cada fin de semana contamos con los mejores DJs del mundo.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-birthday-cake"></i>
+                <h3>Celebracion</h3>
+                <p>Cada dia tenemos una celebracion personalizada.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-cocktail"></i>
+                <h3>Cocktails</h3>
+                <p>Los mejores cockeles y bebidas en LUX.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="about" id="about">
+
+        <h2 class="title">Nosotros</h2>
+
+        <p>
+            LUX Los Ángeles es un night club elegante situado en el centro de la ciudad con un estilo clasico y elegante creado en el año 2015. <br>
+            Con actuaciones de los DJs y cantantes mas famosos del mundo cada semana. En nuestaras filas de personal contamos con los mejores profesionales de servicio a tu disposicion.
+        </p>
+
+        <a href="{{ path('nosotros')}}" class="btn">Saber mas</a>
+
+    </div>
+
+    <div class="price" id="price">
+
+        <article class="contain">
+            <h2 class="title">Precio</h2>
+            <p>Quieres vivir la mejor experiencia musicas con nostros! <br>
+                No te lo pierdas!
+            </p>
+            
+            <!--Modal1-->
+            <button class="btn" id="btnModal">Saber precio</button>
+            
+            <div id="myModal" class="modalContainer">
+
+                <div class="modal-content">
+                    <span class="close">×</span> <h2 class="title-modal">Precios</h2>
+                    <p class="modal-price">Entrada general: 20$ <br>
+                        Entrada VIP: 35$ <br>
+                        Entrada VIP plus: 50$
+                    </p>
+
+                    <button class="btn" onclick="window.location='{{ path('entradas')}}'"> Comprar Entradas </button>
+                </div>
+            </div> 
+
+        </article>
+
+    </div>
+
+{% endblock %}
