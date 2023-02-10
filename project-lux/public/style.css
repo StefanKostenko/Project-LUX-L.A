@@ -198,7 +198,43 @@ p {
 }
 
 
+/* Slider */
 
+.slick-dots {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.slick-dots button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+
+.slick-dots li button::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #999;
+}
+
+.slick-dots li.slick-active button::before {
+  background-color: #333;
+}
+
+
+
+/* FIN Slider */
 
 
 /* Menu */
@@ -214,6 +250,7 @@ nav{
       justify-content:space-around;
       width: 50%;
       text-transform: uppercase;
+      list-style-type: none;
   }
   .nav-links a{
     display: block;
