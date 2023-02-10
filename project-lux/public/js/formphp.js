@@ -4,9 +4,8 @@ $( function() {
   
 
 $(document).ready(function(){
-    $("#formularioEntradas").submit(function(e){
+    $("#entrada_form").submit(function(e){
         e.preventDefault();
-        let dateValue = 
-        $.post("../formulario.php", {})
+        alert("formulario enviado con exito!")
     })
 })

@@ -63,12 +63,62 @@
 
                 <div class="modal-content">
                     <span class="close">×</span> <h2 class="title-modal">Precios</h2>
-                    <p class="modal-price">Entrada general: 20$ <br>
-                        Entrada VIP: 35$ <br>
-                        Entrada VIP plus: 50$
-                    </p>
 
-                    <button class="btn" onclick="window.location='{{ path('entradas')}}'"> Comprar Entradas </button>
+                    <div class="snip1214">
+                        <div class="plan">
+                        <h3 class="plan-title">
+                        Estandart
+                        </h3>
+                        <div class="plan-cost"><span class="plan-price">19€</span></div>
+                        <ul class="plan-features">
+                        <li><i class="ion-checkmark"> </i>Entrada</li>
+                        <li><i class="ion-checkmark"> </i>2 Copas estandart</li>
+                        </ul>
+                        <div class="plan-select"><a href="{{ path('entradas')}}">Comprar Entradas</a></div>
+                        </div>
+
+                        <div class="plan">
+                        <h3 class="plan-title">
+                        Estandart Plus
+                        </h3>
+                        <div class="plan-cost"><span class="plan-price">29€</span></div>
+                        <ul class="plan-features">
+                        <li><i class="ion-checkmark"> </i>Entrada</li>
+                        <li><i class="ion-checkmark"> </i>3 Copas</li>
+                        <li><i class="ion-checkmark"> </i>1 Refresco</li>
+                        </ul>
+                        <div class="plan-select"><a href="{{ path('entradas')}}">Comprar Entradas</a></div>
+                        </div>
+
+                        <div class="plan">
+                        <h3 class="plan-title">
+                        VIP
+                        </h3>
+                        <div class="plan-cost"><span class="plan-price">40€</span></div>
+                        <ul class="plan-features">
+                        <li><i class="ion-checkmark"> </i>Entrada</li>
+                        <li><i class="ion-checkmark"> </i>Mesa para 5 personas</li>
+                        <li><i class="ion-checkmark"> </i>1 Botella ha elegir entre 50-100€</li>
+                        <li><i class="ion-checkmark"> </i>Aceso salon VIP</li>
+                        </ul>
+                        <div class="plan-select"><a href="{{ path('entradas')}}">Comprar Entradas</a></div>
+                        </div>
+                        
+                        <div class="plan featured">
+                        <h3 class="plan-title">
+                        VIP Plus
+                        </h3>
+                        <div class="plan-cost"><span class="plan-price">$65</span></div>
+                        <ul class="plan-features">
+                        <li><i class="ion-checkmark"> </i>Entrada</li>
+                        <li><i class="ion-checkmark"> </i>Mesa para 10 personas</li>
+                        <li><i class="ion-checkmark"> </i>2 Botella ha elegir entre 50-100€</li>
+                        <li><i class="ion-checkmark"> </i>Aceso salon VIP</li>
+                        </ul>
+                        <div class="plan-select"><a href="{{ path('entradas')}}">Comprar Entradas</a></div>
+                        </div>
+                    </div>
+
                 </div>
             </div> 
 
