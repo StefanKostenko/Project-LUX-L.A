@@ -467,9 +467,21 @@ form a{
 
 @media screen and (max-width:800px) {
     .modalContainer .modal-content{
+      background-color: #242424;
+
+      margin: auto;
+    
+      padding: 20px;
+    
+      border: 1px solid #242424;
+    
+      border-top: 10px solid #9c27b0;
+    
       width: 80%;
-      height: 90%;
-      padding: 0; 
+    
+      height: 80%;
+    
+      overflow-y: scroll;
     }
 
     .title-modal{
@@ -734,8 +746,14 @@ padding: 20px 10px 0;
 border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 @media only screen and (max-width: 767px) {
+.snip1214  {
+  max-width: 250px;
+}
+
 .snip1214 .plan {
 width: 50%;
+float: none;
+margin: 10px auto;
 }
 .snip1214 .plan-title,
 .snip1214 .plan-select a {
@@ -758,6 +776,7 @@ margin-top: 0;
 .snip1214 .plan {
 width: 90%;
 margin: 10px auto;
+float: none;
 }
 }
 
