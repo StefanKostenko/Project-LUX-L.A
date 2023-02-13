@@ -19,19 +19,7 @@
 
     {% include('partials/_navigation.html.twig') %}
 
-    <div class="header" id="header">
-        <h2 class="title">Inicio</h2>
-        <p>
-            El mejor lugar para desconectar y disfrutar de los mejores DJs y la mejor musica de la actualidad.
-            <br>
-            Con un estilo clasico y elegante, donte te vas a sentir comodo en cualquier rincon de la sala.
-        </p>
-
-        <div class="btn-home">
-            <a href="{{ path('entradas')}}" class="btn">Entradas</a>
-            <a href="{{ path('login')}}" class="btn">LUX VIP</a>
-        </div>
-    </div>
+    {% include('partials/_head.html.twig') %}
 
 
     <!--Content-->

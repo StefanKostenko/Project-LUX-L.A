@@ -1,0 +1,17 @@
+    <div class="header" id="header">
+        <h2 class="title">Inicio</h2>
+        <p>
+            El mejor lugar para desconectar y disfrutar de los mejores DJs y la mejor musica de la actualidad.
+            <br>
+            Con un estilo clasico y elegante, donte te vas a sentir comodo en cualquier rincon de la sala.
+        </p>
+
+        <div class="btn-home">
+            <a href="{{ path('entradas')}}" class="btn">Entradas</a>
+            {% if app.user %}
+                <a href="{{ path('logout') }}"class="btn">{{ app.user.name }} - Logout</a>
+            {% else %}
+                <a href="{{ path('login')}}" class="btn">LUX VIP</a>
+            {% endif %}
+        </div>
+    </div>

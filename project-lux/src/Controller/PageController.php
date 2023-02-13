@@ -40,22 +40,16 @@ class PageController extends AbstractController
 
     }
 
-    #[Route('/login', name: 'login')]
-    public function login(): Response
-    {
-        return $this->render('page/login.html.twig', []);
-    }
-
-    #[Route('/register', name: 'register')]
-    public function register(): Response
-    {
-        return $this->render('page/register.html.twig', []);
-    }
-
     #[Route('/nosotros', name: 'nosotros')]
     public function nosotros(): Response
     {
         return $this->render('page/nosotros.html.twig', []);
+    }
+
+    #[Route('/singleUser', name: 'singleUser')]
+    public function singleUser(): Response
+    {
+        return $this->render('page/singleUser.html.twig', []);
     }
 }
 
