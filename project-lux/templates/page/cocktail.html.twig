@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <div class="content">
+        <h2 class="title">Carta</h2>
+
+        {{ render(controller('App\\Controller\\PageController::cocktailTemplate')) }}
+    </div>
+
+{% endblock %}

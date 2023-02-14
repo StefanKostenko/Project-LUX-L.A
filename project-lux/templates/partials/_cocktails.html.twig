@@ -1,0 +1,11 @@
+    <div class="cocktail-cards">
+        {% for cocktail in cocktails %}
+
+        <div class="cocktail-card">
+            <img src="{{ asset('img/' ~ cocktail.photo) }}" alt="Cocktail">
+            <h3 class="cocktail-name"> {{ ( cocktail.name )}} </h3>
+            <p class="cocktail-description"> {{ ( cocktail.description )}} </p>
+        </div>
+
+        {% endfor %}
+    </div>

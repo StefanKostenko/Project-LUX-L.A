@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cocktail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,13 +44,26 @@ class PageController extends AbstractController
     #[Route('/nosotros', name: 'nosotros')]
     public function nosotros(): Response
     {
-        return $this->render('page/nosotros.html.twig', []);
+        return $this->render('page/nosotros.html.twig');
     }
 
     #[Route('/singleUser', name: 'singleUser')]
     public function singleUser(): Response
     {
         return $this->render('page/singleUser.html.twig', []);
+    }
+
+    #[Route('/cocktails', name: 'cocktails')]
+    public function cocktails(): Response
+    {
+        return $this->render('page/cocktail.html.twig');
+    }
+
+    public function cocktailTemplate(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Cocktail::class);
+        $cocktails = $repository->findAll();
+        return $this->render('partials/_cocktails.html.twig',compact('cocktails'));
     }
 }
 
