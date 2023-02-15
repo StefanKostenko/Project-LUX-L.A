@@ -31,12 +31,7 @@ class Entrada
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Range(
-        min: 1,
-        max: 6,
-        notInRangeMessage: 'Usted solo puede comprar 6 entradas a la vez!',
-    )]
-    private ?int $num_personas = null;
+    private ?string $codigo = null;
 
     public function getId(): ?int
     {
@@ -91,14 +86,14 @@ class Entrada
         return $this;
     }
 
-    public function getNumPersonas(): ?int
+    public function getCodigo(): ?string
     {
-        return $this->num_personas;
+        return $this->codigo;
     }
 
-    public function setNumPersonas(int $num_personas): self
+    public function setCodigo(string $codigo): self
     {
-        $this->num_personas = $num_personas;
+        $this->codigo = $codigo;
 
         return $this;
     }

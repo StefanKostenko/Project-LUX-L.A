@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LUX L.A. PDF</title>
+        <style>
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+        
+        .entrada {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px auto;
+            width: 400px;
+        }
+        
+        .entrada h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .entrada p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .entrada .codigo {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+        <div class="entrada">
+            <h1>Entrada LUX L.A.</h1>
+            <p>Nombre: {{( entrada.name )}}</p>
+            <p>Fecha: {{ entrada.date|date('d/m/y') }} </p>
+            <p>Hora: 23:30</p>
+            <p>Precio: Aqui ira el precio de la entrada €</p>
+        <div class="codigo">{{ entrada.codigo }}</div>
+    </div>
+</body>
+</html>

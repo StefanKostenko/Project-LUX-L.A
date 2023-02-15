@@ -11,6 +11,9 @@ use App\Entity\Entrada;
 use App\Form\EntradaFormType;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Knp\Snappy\Pdf;
+use App\Service\EntradaService;
 
 class PageController extends AbstractController
 {
@@ -21,7 +24,7 @@ class PageController extends AbstractController
     }
 
     #[Route('/entradas', name: 'entradas')]
-    public function entradas(ManagerRegistry $doctrine, Request $request): Response
+    public function entradas(ManagerRegistry $doctrine, Request $request, Pdf $knpSnappyPdf, EntradaService $entradaService): Response
     {
         $entrada = new Entrada();
         $form = $this->createForm(EntradaFormType::class, $entrada);
@@ -29,11 +32,25 @@ class PageController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entrada = $form->getData();    
-            $entrada->setDate(new DateTime($form->get('date')->getData()));    
+            $entrada->setDate(new DateTime($form->get('date')->getData()));  
+            $entrada->setCodigo($entradaService->generarCodigoAleatorio());  
             $entityManager = $doctrine->getManager();    
             $entityManager->persist($entrada);
             $entityManager->flush();
-            return $this->redirectToRoute('index', []);
+
+            $snappy = new Pdf('/usr/local/bin/wkhtmltopdf');
+            $snappy->setOption('page-size', 'A4');
+
+            $html = $this->renderView('page/pdfEntrada.html.twig', array(
+                'entrada' => $entrada,
+            ));
+            
+            return new PdfResponse(
+                $knpSnappyPdf->getOutputFromHtml($html),
+                'entradaLUXLA.pdf'
+            );
+
+           
         }
         return $this->render('page/entradas.html.twig', array(
             'form' => $form->createView()    
