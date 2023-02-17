@@ -44,7 +44,7 @@ class PageController extends AbstractController
             $entrada = $form->getData();    
             $entrada->setDate(new DateTime($form->get('date')->getData()));  
             $entrada->setCodigo($entradaService->generarCodigoAleatorio());
-              
+
             $entityManager = $doctrine->getManager();    
             $entityManager->persist($entrada);
             $entityManager->flush();
@@ -85,6 +85,12 @@ class PageController extends AbstractController
     public function cocktails(): Response
     {
         return $this->render('page/cocktail.html.twig');
+    }
+
+    #[Route('/djs', name: 'djs')]
+    public function djs(): Response
+    {
+        return $this->render('page/djs.html.twig');
     }
 
     public function cocktailTemplate(ManagerRegistry $doctrine): Response
