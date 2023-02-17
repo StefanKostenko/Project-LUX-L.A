@@ -21,6 +21,7 @@ class Entrada
     #[ORM\Column(length: 255)]
     private ?string $dni = null;
 
+
     #[ORM\Column(length: 255)]
     #[Assert\Email(
         message: 'El email no tiene el formato correcto',
@@ -32,6 +33,9 @@ class Entrada
 
     #[ORM\Column(length: 255)]
     private ?string $codigo = null;
+
+    #[ORM\Column(length: 255)]
+    private ?int $precio = null;
 
     public function getId(): ?int
     {
@@ -95,6 +99,17 @@ class Entrada
     {
         $this->codigo = $codigo;
 
+        return $this;
+    }
+
+    public function getPrecio(): ?int
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(int $precio): self
+    {
+        $this->precio = $precio;
         return $this;
     }
 }

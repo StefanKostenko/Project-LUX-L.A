@@ -21,6 +21,7 @@ class EntradaFormType extends AbstractType
             ->add('dni', null, array('label' => 'DNI/NIE'))
             ->add('email', EmailType::class, array('label' => 'Correo'))
             ->add('date', TextType::class, array('mapped' => false,'label' => 'Fecha', ))
+            ->add('precio', TextType::class, array('label' => 'Precio'))
             ->add('Send', SubmitType::class, array('label' => 'Comprar'));
         ;
     }

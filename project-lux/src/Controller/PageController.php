@@ -23,9 +23,19 @@ class PageController extends AbstractController
         return $this->render('page/index.html.twig', []);
     }
 
-    #[Route('/entradas', name: 'entradas')]
-    public function entradas(ManagerRegistry $doctrine, Request $request, Pdf $knpSnappyPdf, EntradaService $entradaService): Response
+    #[Route('/entradas/{tipo}', name: 'entradas')]
+    public function entradas(ManagerRegistry $doctrine, Request $request, Pdf $knpSnappyPdf, EntradaService $entradaService, $tipo = 1): Response
     {
+        if ($tipo == 1){
+            $precio = 19;
+        }elseif($tipo == 2){
+            $precio = 29;
+        }elseif($tipo == 3){
+            $precio = 40;
+        }elseif($tipo == 4){
+            $precio = 65;
+        }
+
         $entrada = new Entrada();
         $form = $this->createForm(EntradaFormType::class, $entrada);
         
@@ -33,7 +43,8 @@ class PageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entrada = $form->getData();    
             $entrada->setDate(new DateTime($form->get('date')->getData()));  
-            $entrada->setCodigo($entradaService->generarCodigoAleatorio());  
+            $entrada->setCodigo($entradaService->generarCodigoAleatorio());
+              
             $entityManager = $doctrine->getManager();    
             $entityManager->persist($entrada);
             $entityManager->flush();
@@ -53,7 +64,7 @@ class PageController extends AbstractController
            
         }
         return $this->render('page/entradas.html.twig', array(
-            'form' => $form->createView()    
+            'form' => $form->createView(), 'precio'=>$precio 
         ));
 
     }

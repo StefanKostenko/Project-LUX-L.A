@@ -44,7 +44,7 @@
             <p>Nombre: {{( entrada.name )}}</p>
             <p>Fecha: {{ entrada.date|date('d/m/y') }} </p>
             <p>Hora: 23:30</p>
-            <p>Precio: Aqui ira el precio de la entrada €</p>
+            <p>Precio: {{ entrada.precio }}$</p>
         <div class="codigo">{{ entrada.codigo }}</div>
     </div>
 </body>
