@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use TCPDF;
 use App\Entity\Cocktail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,8 +12,6 @@ use App\Entity\Entrada;
 use App\Form\EntradaFormType;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Knp\Snappy\Pdf;
 use App\Service\EntradaService;
 
 class PageController extends AbstractController
@@ -24,7 +23,7 @@ class PageController extends AbstractController
     }
 
     #[Route('/entradas/{tipo}', name: 'entradas')]
-    public function entradas(ManagerRegistry $doctrine, Request $request, Pdf $knpSnappyPdf, EntradaService $entradaService, $tipo = 1): Response
+    public function entradas(ManagerRegistry $doctrine, Request $request, EntradaService $entradaService, $tipo = 1): Response
     {
         if ($tipo == 1){
             $precio = 19;
@@ -49,17 +48,25 @@ class PageController extends AbstractController
             $entityManager->persist($entrada);
             $entityManager->flush();
 
-            $snappy = new Pdf('/usr/local/bin/wkhtmltopdf');
-            $snappy->setOption('page-size', 'A4');
+            $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+            $pdf->SetCreator('Creator');
+            $pdf->SetAuthor('Author');
+            $pdf->SetTitle('Title');
+            $pdf->SetSubject('Subject');
+            $pdf->SetKeywords('Keyword 1, Keyword 2');
+            $pdf->setPrintHeader(false);
+            $pdf->setPrintFooter(false);
+            $pdf->SetFont('helvetica', '', 11);
+            $pdf->AddPage();
 
             $html = $this->renderView('page/pdfEntrada.html.twig', array(
                 'entrada' => $entrada,
             ));
-            
-            return new PdfResponse(
-                $knpSnappyPdf->getOutputFromHtml($html),
-                'entradaLUXLA.pdf'
-            );
+
+            $pdf->writeHTML($html, true, false, true, false, '');
+            $pdf->Output('entradaLUXLA.pdf', 'I');
+
+            exit();
 
            
         }
