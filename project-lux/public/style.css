@@ -47,7 +47,7 @@ body {
 
 .header {
     height: 60vh !important;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(img/lux3.jpg) no-repeat center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(img/lux3.jpg) no-repeat center;
     background-size: cover;
 }
 
@@ -832,3 +832,27 @@ float: none;
 .fotorama__nav-wrap{
   justify-content: center !important;
 }
+
+/**  DJs **/
+
+.contentDJ {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #101010;
+}
+
+.imagenDJ {
+  width: 40%;
+}
+
+.imagenDJ img {
+  width: 100%;
+  display: block;
+}
+
+.textoDJ {
+  width: 60%;
+  padding: 0 20px;
+}
+
