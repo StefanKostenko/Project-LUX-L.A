@@ -93,6 +93,18 @@ class PageController extends AbstractController
         return $this->render('page/djs.html.twig');
     }
 
+    #[Route('/guardarropa', name: 'guardarropa')]
+    public function guardarropa(): Response
+    {
+        return $this->render('page/guardarropa.html.twig');
+    }
+
+    #[Route('/eventos', name: 'eventos')]
+    public function eventos(): Response
+    {
+        return $this->render('page/eventos.html.twig');
+    }
+
     public function cocktailTemplate(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Cocktail::class);
