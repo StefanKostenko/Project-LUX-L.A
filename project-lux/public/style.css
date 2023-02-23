@@ -857,3 +857,15 @@ float: none;
 }
 
 /** Eventos **/
+
+.fc-toolbar{
+  color:rgb(255, 255, 255);
+}
+
+.fc-col-header-cell{
+  color:rgb(255, 255, 255);
+}
+
+.fc-daygrid-day-number{
+  color:rgb(255, 255, 255);
+}
