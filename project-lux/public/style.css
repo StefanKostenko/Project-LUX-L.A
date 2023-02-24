@@ -869,3 +869,22 @@ float: none;
 .fc-daygrid-day-number{
   color:rgb(255, 255, 255);
 }
+
+.fc-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fc-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.fc-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

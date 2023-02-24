@@ -8,15 +8,58 @@
 
     </div>
     <script>
+    //onload llamas a esta función mediante ajas a la ruta /api/eventos'
 
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+    $.ajax({
+        url: '/api/eventos',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            eventos = [];
+            for(var i= 0; i < data.length; i++){
+                fecha = new Date(data[i].date.date)
+                console.log(fecha);
+                evento = {
+                    title: data[i].name,
+                    start: fecha.getFullYear() + "-" + ("0" + (fecha.getMonth()+ 1)).slice(-2) + "-" + fecha.getDate(),
+                    image: '/img/' + data[i].photo,
+                };
+                eventos.push(evento);
+            }
+            console.log(eventos);
+            rellenarCalendario(eventos);
+        },
+        error: function(xhr, status, error) {
+            console.error(error); // maneja el error si falla la solicitud
+        }
+    });
+
+    
+    });
+
+    function rellenarCalendario(eventos){
         var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            themeSystem: 'standart'
-        });
-        calendar.render();
-      });
-
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'standard',
+        contentHeight: 'auto', // Altura automática del calendario
+        eventContent: function(info) {
+            var html = '<div class="fc-content">';
+            html += '<div class="fc-title">' + info.event.title + '</div>';
+            if (info.event.extendedProps.image) {
+                html += "<div class='fc-image-container'><img src='" + info.event.extendedProps.image + "'></div>";
+            }
+            html += '</div>';
+            return { html: html };
+        },
+        eventRender: function(info) {
+        info.el.querySelector('.fc-content').style.height = info.el.querySelector('.fc-content').offsetWidth + 'px'; // Ajustar la altura de la celda para que sea igual que su anchura
+        },
+        //events: [{title:'dfdfg',image:'',start: '2023-02-25',}],
+        events: eventos
+    });
+    calendar.render();
+    }
     </script>
 
 {% endblock %}

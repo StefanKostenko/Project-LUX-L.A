@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Eventos;
 use App\Entity\Cocktail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Knp\Snappy\Pdf;
 use App\Service\EntradaService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PageController extends AbstractController
 {
@@ -75,12 +77,6 @@ class PageController extends AbstractController
         return $this->render('page/nosotros.html.twig');
     }
 
-    #[Route('/singleUser', name: 'singleUser')]
-    public function singleUser(): Response
-    {
-        return $this->render('page/singleUser.html.twig', []);
-    }
-
     #[Route('/cocktails', name: 'cocktails')]
     public function cocktails(): Response
     {
@@ -99,9 +95,32 @@ class PageController extends AbstractController
         return $this->render('page/guardarropa.html.twig');
     }
 
+    #[Route('/api/eventos', name: 'api_eventos')]
+    public function apiEventos(ManagerRegistry $doctrine): JsonResponse
+    {
+        $repository = $doctrine->getRepository(Eventos::class);
+        $events = $repository->findAll();
+        $data = [];
+        if(!$events){
+            return new JsonResponse("[]", Response::HTTP_NOT_FOUND);
+        }
+
+        foreach($events as $event){
+            $item = [
+                "id"=> $event->getId(),
+                "name"=> $event->getName(),
+                "photo"=> $event->getPhoto(),
+                "date"=> $event->getDate()
+            ];
+            $data[] = $item;
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+        
+    }
     #[Route('/eventos', name: 'eventos')]
     public function eventos(): Response
     {
+
         return $this->render('page/eventos.html.twig');
     }
 
@@ -110,6 +129,13 @@ class PageController extends AbstractController
         $repository = $doctrine->getRepository(Cocktail::class);
         $cocktails = $repository->findAll();
         return $this->render('partials/_cocktails.html.twig',compact('cocktails'));
+    }
+
+    public function eventTemplate(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Eventos::class);
+        $events = $repository->findAll();
+        return $this->render('page/eventos.html.twig',compact('events'));
     }
 }
 
